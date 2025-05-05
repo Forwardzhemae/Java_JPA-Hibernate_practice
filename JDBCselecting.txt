@@ -1,0 +1,62 @@
+package org.example;
+
+import com.mysql.cj.protocol.Resultset;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class JDBCselect {
+
+    static final String DB_URL = "jdbc:mysql://localhost:3306/test_db";
+    static final String USER = "root";
+    static final String PWD = "132456";
+
+    public static void main(String[] args) {
+
+
+        Connection connection = null;
+
+        try {
+            connection= DriverManager.getConnection(DB_URL, USER, PWD);
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM students WHERE avg_grade > ?"
+            );
+            statement.setDouble(1, 9.0);
+            ResultSet resultset = statement.executeQuery();
+
+            List<Student> students = new ArrayList<>();
+            while (resultset.next()) {
+                Student student = new Student();
+                student.setId(resultset.getLong("id"));
+                student.setName(resultset.getString("name"));
+                student.setSurname(resultset.getString("surname"));
+                student.setAvggrade(resultset.getDouble("avg_grade"));
+                students.add(student);
+            }
+
+            System.out.println(students);
+
+            statement.close();
+            resultset.close();   
+
+
+
+
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+}
