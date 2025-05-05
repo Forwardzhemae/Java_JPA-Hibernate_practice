@@ -1,0 +1,60 @@
+package org.example;
+
+public class Student {
+    private Long id;
+    private String name;
+    private String surname;
+    private Double avggrade;
+
+    public Student(String name, String surname, double avggrade) {
+        this.name = name;
+        this.surname = surname;
+        this.avggrade = avggrade;
+    }
+
+    public Long getId(long aLong) {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public double getAvggrade() {
+        return avggrade;
+    }
+
+    public void setAvggrade(double avggrade) {
+        this.avggrade = avggrade;
+    }
+
+    public Student() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", avggrade=" + avggrade +
+                '}';
+    }
+}
