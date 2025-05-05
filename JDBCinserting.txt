@@ -1,0 +1,55 @@
+package org.example;
+
+import java.sql.*;
+
+public class JDBCinsert_2 {
+
+    static final String DB_URL = "jdbc:mysql://localhost:3306/test_db";
+    static final String USER = "root";
+    static final String PWD = "132456";
+
+    public static void main(String[] args) {
+
+
+        Connection connection = null;
+        Student student = new Student("пфдweqewqшь", "kiewqng", 5.4);
+
+
+        try {
+            connection= DriverManager.getConnection(DB_URL, USER, PWD);
+            Statement statement = connection.createStatement();
+//            String sqlquerry = "INSERT INTO students(name, surname, avg_grade) VALUES"
+//                    + "('" +
+//                    student.getName() +
+//                    "','" +
+//                    student.getSurname() +
+//                    "'," +
+//                    student.getAvggrade() + ")";
+//                    2 METHOD OF INSERTING 
+            String sqlquerry = "INSERT INTO students(name, surname, avg_grade) " +
+                    "VALUES ('leo', 'ferrel', 8.4)";
+
+            String sqlquerry1 = "INSERT INTO students(name, surname, avg_grade) " +
+                    "VALUES ('july', 'moon', 9.0)";
+
+
+
+            statement.executeUpdate(sqlquerry);
+            statement.executeUpdate(sqlquerry1);
+
+            statement.close();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+}
