@@ -1,0 +1,92 @@
+// POJO CLASS (PLAIN OLD JAVA OBJECT) SIMPLE WITH FUNCTIONALITY
+// JAVA CLASS WITH PRIVATE FIELD WITH getter and setters constructors with no arguments.
+package org.example.entity;
+
+
+import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "test_students")
+public class Student {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "first_name", unique = true)
+    private String name;
+
+//    @Column(name = "surname")
+    private String surname;
+
+    @Column(name = "avg_grade", nullable = false)
+    private Double avggrade;
+
+    @Transient
+    private LocalDateTime createdDate;
+
+    public Student(String name, String surname, double avggrade) {
+        this.name = name;
+        this.surname = surname;
+        this.avggrade = avggrade;
+        createdDate = LocalDateTime.now();
+    }
+
+    public Long getId(long aLong) {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public double getAvggrade() {
+        return avggrade;
+    }
+
+    public void setAvggrade(double avggrade) {
+        this.avggrade = avggrade;
+    }
+
+    public Student() {
+
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", avggrade=" + avggrade +
+                ", createdDate=" + createdDate +
+                '}';
+    }
+}
